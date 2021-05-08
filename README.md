@@ -15,7 +15,7 @@ Enable the Web User Interface option from qBittorrent and check "Bypass authenti
 
 If you want to use your credentials, just add them in qbitseedmgr.py in the following line:
 ```
-client = qbittorrentapi.Client(host='localhost:8080', username='<your-username>', password='<your-password>')
+client = qbittorrentapi.Client(host='localhost', port=8080, username='<your-username>', password='<your-password>')
 ```
 
 To start managing your torrents run:
