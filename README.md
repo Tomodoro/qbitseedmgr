@@ -9,16 +9,18 @@ Configurations are read from the file "qbitseedmgr.ini" and must follow the API 
 More information at https://qbittorrent-api.readthedocs.io/en/latest/apidoc/torrents.html
 
 ## Usage
-Clone the repo, then run:
-```
-python qbitseedmgr.py set-tiers
-```
+Clone the repo.
 
-Enable the Web User Interface option from qBittorrent and enable check "Bypass authentication for clients on localhost"
+Enable the Web User Interface option from qBittorrent and check "Bypass authentication for clients on localhost"
 
 If you want to use your credentials, just add them in qbitseedmgr.py in the following line:
 ```
 client = qbittorrentapi.Client(host='localhost:8080', username='<your-username>', password='<your-password>')
+```
+
+To start managing your torrents run:
+```
+python qbitseedmgr.py set-tiers
 ```
 
 If you only want to seed torrents with few seeds, then run:
