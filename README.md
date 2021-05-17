@@ -1,3 +1,8 @@
+# Archived
+
+This repository will be archive and all further development will be moved to the following repo:
+https://github.com/Tomodoro/qBittorrent-Unattended-Manager
+
 # qBittorrent Seeding Manager
 
 Program to manage seeding options of multiple completed torrents at once
