@@ -13,9 +13,11 @@ Clone the repo.
 
 Enable the Web User Interface option from qBittorrent and check "Bypass authentication for clients on localhost"
 
-If you want to use your credentials, just add them in qbitseedmgr.py in the following line:
+If qBittorrent is running on another machine, check "Bypass authentication for clients in whitelisted IP subnets" and add the machine's IP
+
+Currently there is no support for credentials (working on it), you you will have to edit the following line inside "qbitseedmgr.py":
 ```
-client = qbittorrentapi.Client(host='localhost', port=8080, username='<your-username>', password='<your-password>')
+client = qbittorrentapi.Client(host=config["Client"]["host"], username='<your-username>', password='<your-password>')
 ```
 
 To start managing your torrents run:
@@ -31,6 +33,16 @@ python qbitseedmgr.py not-popular
 You can also use both commands in any order:
 ```
 python qbitseedmgr.py set-tiers not-popular
+```
+
+Managed torrents are paused once they reach the ratio limit, to automatically resume them:
+```
+python qbitseedmgr.py tier-active
+```
+
+To avoid overriding not-popular, run in the following order:
+```
+python qbitseedmgr.py tier-active not-popular
 ```
 
 To see the help text just run:
