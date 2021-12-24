@@ -1,14 +1,14 @@
 # More info at https://qbittorrent-api.readthedocs.io/en/latest/apidoc/torrents.html
-# Inspiration https://www.reddit.com/r/qBittorrent/comments/n3a3ii/automatically_stop_seeding_after_x_seeders/
+# Inspiration https://old.reddit.com/r/qBittorrent/comments/n3a3ii/automatically_stop_seeding_after_x_seeders/
 
 import qbittorrentapi
 import sys
 import re
 from configparser import ConfigParser
 
-client = qbittorrentapi.Client(host='localhost', port=8080)
 config = ConfigParser()
 config.read("qbitseedmgr.ini")
+client = qbittorrentapi.Client(host=config["Client"]["host"], port=int(config["Client"]["port"]))
 
 def help():
 	print ("")
@@ -18,8 +18,10 @@ def help():
 	print ("Arguments available:")
 	print ("    set-tiers:   Adds tags to torrents and applies upload speed limits according to their ratio")
 	print ("                 You can exclude torrents from this limits adding the tag \"@tier free\" manually")
-	print ("    not-popular: Pause torrents if there is more than X seeders currently present")
-	print ("                 Resume torrents if there is less than X seeders currently present\n")
+	print ("    not-popular: Pauses torrents if there is more than X seeders currently present")
+	print ("                 Resumes torrents if there is less than X seeders currently present\n")
+	print ("    tier-active: Resumes paused torrents, only affects tier-tagged torrents")
+	print ("                 Overrides \"not-popular\" if used after that argument")
 	print ("Configurations are read from the file \"qbitseedmgr.ini\" and must follow the API Reference from qittorrent-api ")
 	print ("")
 
@@ -29,6 +31,18 @@ def dev_test():
 		print (torrent.name[0:40])
 		print ("-----")
 
+def tier_active():
+	for torrent in client.torrents_info(status_filter='paused'):
+		tags = torrent.tags
+		ratio = torrent.ratio
+		ratio_limit = torrent.ratio_limit
+		has_tier = re.search("@tier",tags)
+
+		if has_tier is None:
+			continue
+
+		if (ratio >= ratio_limit):
+			client.torrents_resume(torrent.hash)
 
 def not_popular():
 	for torrent in client.torrents_info():
@@ -153,3 +167,6 @@ for arg in sys.argv:
 
 	if arg == "not-popular":
 		not_popular()
+
+	if arg == "tier-active":
+		tier_active()
