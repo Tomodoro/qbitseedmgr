@@ -10,6 +10,28 @@ config = ConfigParser()
 config.read("qbitseedmgr.ini")
 client = qbittorrentapi.Client(host=config["Client"]["host"], port=int(config["Client"]["port"]))
 
+def log_in(cl):
+
+    if (str(config["Client"]["credentials"]) == "True"):
+        try:
+            cl.auth_log_in(username=config["Client"]["username"],password=config["Client"]["password"])
+            print ("INFO: Sucessful login with credentials")
+        except:
+            print ("INFO: Credentials activated in config file")
+            print ("Could not login with provided credentials")
+            sys.exit()
+
+    if (str(config["Client"]["credentials"]) == "False"):
+        try:
+            cl.auth_log_in()
+            print ("INFO: Succesful login with authentication bypass")
+        except:
+            print ("INFO: Credentials deactivated in config file")
+            print ("Could not login, are you sure you have authentication bypass?")
+            sys.exit()
+
+log_in(client)
+
 def help():
 	print ("")
 	print ("qBittorrent Seeding Manager")
@@ -178,3 +200,5 @@ for arg in sys.argv:
 
 	if arg == "tier-active":
 		tier_active()
+
+client.auth_log_out()
