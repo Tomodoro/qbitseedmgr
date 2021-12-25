@@ -32,16 +32,24 @@ def dev_test():
 		print ("-----")
 
 def tier_active():
-	for torrent in client.torrents_info(status_filter='paused'):
+	for torrent in client.torrents_info():
 		tags = torrent.tags
 		ratio = torrent.ratio
 		ratio_limit = torrent.ratio_limit
-		has_tier = re.search("@tier",tags)
+		state = torrent.state
+		tier = re.search("@tier [1-9]",tags)
 
-		if has_tier is None:
+		if tier is None:
 			continue
 
-		if (ratio >= ratio_limit):
+		if (state != "pausedUP"):
+			continue
+
+		tier_num = int(tier.group(0)[-1])
+		prev_tier_num = tier_num-1
+		prev_tier = "Tier "+str(prev_tier_num)
+
+		if (ratio >= int(config[prev_tier]["ratio_limit"])):
 			client.torrents_resume(torrent.hash)
 
 def not_popular():
