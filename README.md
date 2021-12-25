@@ -11,14 +11,7 @@ More information at https://qbittorrent-api.readthedocs.io/en/latest/apidoc/torr
 ## Usage
 Clone the repo.
 
-Enable the Web User Interface option from qBittorrent and check "Bypass authentication for clients on localhost"
-
-If qBittorrent is running on another machine, check "Bypass authentication for clients in whitelisted IP subnets" and add the machine's IP
-
-Currently there is no support for credentials (working on it), you you will have to edit the following line inside "qbitseedmgr.py":
-```
-client = qbittorrentapi.Client(host=config["Client"]["host"], username='<your-username>', password='<your-password>')
-```
+Fill the [Client] fields inside the configuration file, remember to toggle credentials for your use case.
 
 To start managing your torrents run:
 ```
