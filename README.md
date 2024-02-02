@@ -9,7 +9,16 @@ Configurations are read from the file "qbitseedmgr.ini" and must follow the API 
 More information at https://qbittorrent-api.readthedocs.io/en/latest/apidoc/torrents.html
 
 ## Usage
-Clone the repo.
+
+Clone main branch (qBittorrent 4.6.3+):
+```
+git clone https://github.com/Tomodoro/qbitseedmgr.git
+```
+
+For older clients:
+```
+git clone -b legacy https://github.com/Tomodoro/qbitseedmgr.git
+```
 
 Fill the [Client] fields inside the configuration file, remember to toggle credentials for your use case.
 
