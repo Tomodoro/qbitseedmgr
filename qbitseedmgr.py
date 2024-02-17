@@ -108,76 +108,76 @@ def set_tiers():
 
 		# Mantain Tier free
 		elif free:
-			client.torrents_set_share_limits(config["Tier free"]["ratio_limit"],config["Tier free"]["seeding_time_limit"],config["Tier free"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier free"]["ratio_limit"],config["Tier free"]["seeding_time_limit"],config["Tier free"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier free"]["upload_limit"], torrent_hashes=hash)	
 	
 		# Set Tier 0
 		elif (ratio >= 0) and (ratio < int(config["Tier 0"]["ratio_limit"])):
 			client.torrents_add_tags("@tier 0", torrent_hashes=hash)
-			client.torrents_set_share_limits(config["Tier 0"]["ratio_limit"],config["Tier 0"]["seeding_time_limit"], config["Tier 0"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 0"]["ratio_limit"],config["Tier 0"]["seeding_time_limit"], config["Tier 0"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 0"]["upload_limit"], torrent_hashes=hash)
 	
 		# Set Tier 1
 		elif (ratio >= int(config["Tier 0"]["ratio_limit"])) and (ratio < int(config["Tier 1"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 0",torrent.hash)
 			client.torrents_add_tags("@tier 1",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 1"]["ratio_limit"],config["Tier 1"]["seeding_time_limit"], config["Tier 1"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 1"]["ratio_limit"],config["Tier 1"]["seeding_time_limit"], config["Tier 1"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 1"]["upload_limit"], torrent_hashes=hash)
 		
 		# Set Tier 2
 		elif (ratio >= int(config["Tier 1"]["ratio_limit"])) and (ratio < int(config["Tier 2"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 1",torrent.hash)
 			client.torrents_add_tags("@tier 2",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 2"]["ratio_limit"],config["Tier 2"]["seeding_time_limit"], config["Tier 2"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 2"]["ratio_limit"],config["Tier 2"]["seeding_time_limit"], config["Tier 2"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 2"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 3
 		elif (ratio >= int(config["Tier 2"]["ratio_limit"])) and (ratio < int(config["Tier 3"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 2",torrent.hash)
 			client.torrents_add_tags("@tier 3",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 3"]["ratio_limit"],config["Tier 3"]["seeding_time_limit"], config["Tier 3"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 3"]["ratio_limit"],config["Tier 3"]["seeding_time_limit"], config["Tier 3"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 3"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 4
 		elif (ratio >= int(config["Tier 3"]["ratio_limit"])) and (ratio < int(config["Tier 4"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 3",torrent.hash)
 			client.torrents_add_tags("@tier 4",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 4"]["ratio_limit"],config["Tier 4"]["seeding_time_limit"], config["Tier 4"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 4"]["ratio_limit"],config["Tier 4"]["seeding_time_limit"], config["Tier 4"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 4"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 5
 		elif (ratio >= int(config["Tier 4"]["ratio_limit"])) and (ratio < int(config["Tier 5"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 4",torrent.hash)
 			client.torrents_add_tags("@tier 5",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 5"]["ratio_limit"],config["Tier 5"]["seeding_time_limit"], config["Tier 5"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 5"]["ratio_limit"],config["Tier 5"]["seeding_time_limit"], config["Tier 5"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 5"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 6
 		elif (ratio >= int(config["Tier 5"]["ratio_limit"])) and (ratio < int(config["Tier 6"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 5",torrent.hash)
 			client.torrents_add_tags("@tier 6",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 6"]["ratio_limit"],config["Tier 6"]["seeding_time_limit"], config["Tier 6"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 6"]["ratio_limit"],config["Tier 6"]["seeding_time_limit"], config["Tier 6"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 6"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 7
 		elif (ratio >= int(config["Tier 6"]["ratio_limit"])) and (ratio < int(config["Tier 7"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 6",torrent.hash)
 			client.torrents_add_tags("@tier 7",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 7"]["ratio_limit"],config["Tier 7"]["seeding_time_limit"], config["Tier 7"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 7"]["ratio_limit"],config["Tier 7"]["seeding_time_limit"], config["Tier 7"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 7"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 8
 		elif (ratio >= int(config["Tier 7"]["ratio_limit"])) and (ratio < int(config["Tier 8"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 7",torrent.hash)
 			client.torrents_add_tags("@tier 8",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 8"]["ratio_limit"],config["Tier 8"]["seeding_time_limit"], config["Tier 8"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 8"]["ratio_limit"],config["Tier 8"]["seeding_time_limit"], config["Tier 8"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 8"]["upload_limit"], torrent_hashes=hash)
 
 		# Set Tier 9
 		elif (ratio >= int(config["Tier 8"]["ratio_limit"])) and (ratio < int(config["Tier 9"]["ratio_limit"])):
 			client.torrents_remove_tags("@tier 8",torrent.hash)
 			client.torrents_add_tags("@tier 9",torrent.hash)
-			client.torrents_set_share_limits(config["Tier 9"]["ratio_limit"],config["Tier 9"]["seeding_time_limit"], config["Tier 9"]["inactive_seeding_time_limit"], torrent_hashes=hash)
+			client.torrents_set_share_limits(config["Tier 9"]["ratio_limit"],config["Tier 9"]["seeding_time_limit"], config["Tier 9"]["seeding_time_limit"], torrent_hashes=hash)
 			client.torrents_set_upload_limit(config["Tier 9"]["upload_limit"], torrent_hashes=hash)
 
 		else:
